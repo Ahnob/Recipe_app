@@ -1,4 +1,4 @@
-// const API_key = "7935b6a201cc4f2395a899025048717c";
+// const API_key = "f1f640af004042e383a9f5c566898e4c";
 // const recipeList = document.getElementById("recipe-list");
 // function displayRecipes(recipes) {
 //   recipeList.innerHTML = "";
@@ -31,40 +31,48 @@
 
 // init();
 
-const API_key = " f1f640af004042e383a9f5c566898e4c";
+const API_key = " 5037eeaedf4b40b686bac31b98c5d9f8";
+const recipeList = document.getElementById("recipe-list");
 
-async function getRandomRecipes() {
+function displayRecipes(recipes) {
+  recipeList.innerHTML = "";
+  recipes.forEach((recipe) => {
+    const recipeItem = document.createElement("li");
+    recipeItem.classList.add("each-container");
+    recipeImage = document.createElement("img");
+    recipeImage.src = recipe.image;
+    recipeImage.alt = "recipe image";
+
+    recipeItem.appendChild(recipeImage);
+    recipeList.appendChild(recipeItem);
+  });
+}
+
+async function searchRecipes() {
   try {
     const response = await fetch(
       `https://api.spoonacular.com/recipes/random?number=10&apiKey=${API_key}`
     );
+
     if (!response.ok) {
-      const errorMessage = await response.text();
-      throw new Error(
-        `HTTP error! status: ${response.status}, message: ${errorMessage}`
-      );
+      throw new Error("Failed to fetch recipes");
     }
+
     const data = await response.json();
-    if (!data.recipes || !Array.isArray(data.recipes)) {
-      throw new Error(
-        "Invalid response format: recipes not found or not an array"
-      );
-    }
+    console.log(data); // Log the data
     return data.recipes;
   } catch (error) {
-    console.error("Error fetching random recipes:", error);
-    return []; // Return an empty array or handle the error as needed
+    console.error("Error fetching recipes:", error.message);
+    return null; // Return null if there's an error
   }
 }
 
 async function init() {
-  try {
-    const recipes = await getRandomRecipes();
-    recipes.forEach((recipe) => {
-      console.log(recipe.title); // Example: Accessing the title property
-    });
-  } catch (error) {
-    console.error("Error initializing:", error);
+  const recipes = await searchRecipes();
+  if (recipes) {
+    displayRecipes(recipes);
+  } else {
+    console.error("No recipes found.");
   }
 }
 
