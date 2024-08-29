@@ -10,7 +10,7 @@
   justify-content: center;
 }
 header {
-  background-color: rgb(5, 5, 99);
+  background-color: rgb(102, 102, 221);
   color: #fff;
   padding: 10px 0;
   text-align: center;
@@ -18,16 +18,15 @@ header {
 }
 
 .each-container {
-  justify-content: space-between;
-  display: flex;
   margin: 10px 40px;
   box-shadow: 0 2px 5px grey;
   border-radius: 5px;
+  flex-direction: column;
 }
 
 .img {
-  max-width: 100%;
-  width: 100px;
+  max-width: 100px;
+  width: 100%;
 }
 
 .text1 {
@@ -39,10 +38,9 @@ header {
   margin: auto 10px;
 }
 button {
-  height: 35px;
-  margin: auto;
+  margin: 20px 5px;
   padding: 6px 20px;
-  background-color: rgb(8, 8, 136);
+  background-color: rgb(118, 118, 213);
   color: #fff;
   border: none;
   white-space: nowrap; /* Prevent text from wrapping */
@@ -50,11 +48,16 @@ button {
 
 button:hover {
   cursor: pointer;
-  background: rgb(7, 7, 227);
+  background: rgb(142, 171, 224);
+  color: black;
 }
 
 li {
   list-style: none;
+}
+.view-btn {
+  margin: 20px 0;
+  padding: 3px 5px;
 }
 
 @media screen and (max-width: 768px) {

@@ -1,21 +1,3 @@
-// // const API_key = " 5037eeaedf4b40b686bac31b98c5d9f8";
-// const API_key = "5037eeaedf4b40b686bac31b98c5d9f8";
-// const recipeList = document.getElementById("recipe-list");
-
-// function displayRecipes(recipes) {
-//   recipeList.innerHTML = "";
-//   recipes.forEach((recipe) => {
-//     const recipeItem = document.createElement("li");
-//     recipeItem.classList.add("each-container");
-//     recipeImage = document.createElement("img");
-//     recipeImage.src = recipe.image;
-//     recipeImage.alt = "recipe image";
-
-//     recipeItem.appendChild(recipeImage);
-//     recipeList.appendChild(recipeItem);
-//   });
-// }
-
 const API_key = "5037eeaedf4b40b686bac31b98c5d9f8";
 const recipeList = document.getElementById("recipe-list");
 
@@ -42,10 +24,24 @@ function displayRecipes(recipes) {
 
     const recipeInstructions = document.createElement("p");
     recipeInstructions.classList.add("text2");
-    recipeInstructions.textContent = "Instructions: " + recipe.instructions;
+    const maxLength = 100; // Set a maximum length for the displayed instructions
+    if (recipe.instructions.length > maxLength) {
+      recipeInstructions.textContent =
+        "Instructions: " + recipe.instructions.substring(0, maxLength) + "...";
+      const readMoreButton = document.createElement("button");
+      readMoreButton.textContent = "Read More";
+      readMoreButton.classList.add("read-more-button");
+      readMoreButton.addEventListener("click", () => {
+        alert(`Full Instructions: ${recipe.instructions}`);
+      });
+      recipeInstructions.appendChild(readMoreButton);
+    } else {
+      recipeInstructions.textContent = "Instructions: " + recipe.instructions;
+    }
 
     const viewButton = document.createElement("button");
     viewButton.textContent = "View Recipe";
+    viewButton.classList.add("view-button");
     viewButton.addEventListener("click", () => {
       // Implement view recipe logic here (e.g., open a modal with full recipe details)
       alert(`Viewing recipe: ${recipe.title}`);
