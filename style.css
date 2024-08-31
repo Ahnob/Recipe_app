@@ -27,6 +27,7 @@ header {
 .img {
   max-width: 100px;
   width: 100%;
+  margin-left: 10px;
 }
 
 .text1 {
