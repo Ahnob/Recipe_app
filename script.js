@@ -22,36 +22,73 @@ function displayRecipes(recipes) {
       "Ingredients: " +
       recipe.extendedIngredients.map((ing) => ing.name).join(", ");
 
+    // Create a wrapper for instructions and buttons
+    const instructionsWrapper = document.createElement("div");
+    instructionsWrapper.classList.add("instructions-wrapper");
+
     const recipeInstructions = document.createElement("p");
     recipeInstructions.classList.add("text2");
     const maxLength = 100; // Set a maximum length for the displayed instructions
-    if (recipe.instructions.length > maxLength) {
-      recipeInstructions.textContent =
-        "Instructions: " + recipe.instructions.substring(0, maxLength) + "...";
-      const readMoreButton = document.createElement("button");
-      readMoreButton.textContent = "Read More";
-      readMoreButton.classList.add("read-more-button");
-      readMoreButton.addEventListener("click", () => {
-        alert(`Full Instructions: ${recipe.instructions}`);
-      });
-      recipeInstructions.appendChild(readMoreButton);
-    } else {
-      recipeInstructions.textContent = "Instructions: " + recipe.instructions;
-    }
+    const truncatedInstructions =
+      recipe.instructions.substring(0, maxLength) + "...";
 
+    recipeInstructions.innerHTML = `Instructions: ${truncatedInstructions} `;
+
+    // Create the "Read More" button
+    const readMoreButton = document.createElement("button");
+    readMoreButton.textContent = "Read More";
+    readMoreButton.classList.add("read-more-button");
+
+    // Create the "Read Less" button
+    const readLessButton = document.createElement("button");
+    readLessButton.textContent = "Read Less";
+    readLessButton.classList.add("read-less-button");
+    readLessButton.style.display = "none"; // Initially hide the "Read Less" button
+
+    readMoreButton.addEventListener("click", () => {
+      recipeInstructions.innerHTML = `Instructions: ${recipe.instructions} `;
+      readMoreButton.style.display = "none"; // Hide "Read More" button
+      readLessButton.style.display = "inline"; // Show "Read Less" button
+    });
+
+    readLessButton.addEventListener("click", () => {
+      recipeInstructions.innerHTML = `Instructions: ${truncatedInstructions} `;
+      readLessButton.style.display = "none"; // Hide "Read Less" button
+      readMoreButton.style.display = "inline"; // Show "Read More" button
+    });
+
+    instructionsWrapper.appendChild(recipeInstructions);
+    instructionsWrapper.appendChild(readMoreButton);
+    instructionsWrapper.appendChild(readLessButton);
+
+    // Create the "View Recipe" button
     const viewButton = document.createElement("button");
     viewButton.textContent = "View Recipe";
     viewButton.classList.add("view-button");
+
+    const fullInstructions = document.createElement("p");
+    fullInstructions.classList.add("full-instructions");
+    fullInstructions.style.display = "none"; // Hide the full instructions initially
+
     viewButton.addEventListener("click", () => {
-      // Implement view recipe logic here (e.g., open a modal with full recipe details)
-      alert(`Viewing recipe: ${recipe.title}`);
+      if (fullInstructions.style.display === "none") {
+        fullInstructions.textContent = recipe.instructions;
+        fullInstructions.style.display = "block";
+        viewButton.textContent = "Hide Recipe"; // Change button text
+      } else {
+        fullInstructions.style.display = "none";
+        viewButton.textContent = "View Recipe"; // Change button text back
+      }
     });
 
+    // Add elements to the recipe item
     recipeItem.appendChild(recipeImage);
     recipeItem.appendChild(recipeTitle);
     recipeItem.appendChild(recipeIngredients);
-    recipeItem.appendChild(recipeInstructions);
-    recipeItem.appendChild(viewButton);
+    recipeItem.appendChild(instructionsWrapper); // Add the instructions wrapper
+    recipeItem.appendChild(fullInstructions); // Add full instructions after the instructions wrapper
+    recipeItem.appendChild(viewButton); // Add the "View Recipe" button below the instructions
+
     recipeList.appendChild(recipeItem);
   });
 }
