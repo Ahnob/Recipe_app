@@ -10,7 +10,7 @@
   justify-content: center;
 }
 header {
-  background-color: rgb(102, 102, 221);
+  background-color: rgb(5, 93, 208);
   color: #fff;
   padding: 10px 0;
   text-align: center;
@@ -18,16 +18,17 @@ header {
 }
 
 .each-container {
-  margin: 10px 40px;
+  margin: 10px 20px;
   box-shadow: 0 2px 5px grey;
-  border-radius: 5px;
+  border-radius: 10px;
   flex-direction: column;
 }
 
 .img {
-  max-width: 100px;
+  max-width: 200px;
   width: 100%;
   margin-left: 10px;
+  margin-top: 10px;
 }
 
 .text1 {
@@ -36,15 +37,16 @@ header {
 }
 
 .text2 {
-  margin: auto 10px;
+  margin: auto 12px;
 }
 button {
   margin: 20px 5px;
-  padding: 10px 20px;
-  background-color: rgb(118, 118, 213);
+  padding: 10px 25px;
+  background-color: rgb(5, 93, 208);
   color: #fff;
   border: none;
   white-space: nowrap; /* Prevent text from wrapping */
+  border-radius: 10px;
 }
 
 button:hover {
