@@ -47,6 +47,8 @@ button {
   border: none;
   white-space: nowrap; /* Prevent text from wrapping */
   border-radius: 10px;
+  font-size: 15px;
+  font-weight: 300;
 }
 
 button:hover {
