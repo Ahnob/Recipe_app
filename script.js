@@ -66,13 +66,22 @@ function displayRecipes(recipes) {
     viewButton.textContent = "View Recipe";
     viewButton.classList.add("view-button");
 
-    const fullInstructions = document.createElement("p");
+    const fullInstructions = document.createElement("ol");
     fullInstructions.classList.add("full-instructions");
     fullInstructions.style.display = "none"; // Hide the full instructions initially
 
     viewButton.addEventListener("click", () => {
       if (fullInstructions.style.display === "none") {
-        fullInstructions.textContent = recipe.instructions;
+        // Split the instructions into steps and add as list items
+        const steps = recipe.instructions
+          .split(/[.\n]/)
+          .filter((step) => step.trim() !== "");
+        fullInstructions.innerHTML = ""; // Clear previous content
+        steps.forEach((step, index) => {
+          const li = document.createElement("li");
+          li.textContent = step.trim();
+          fullInstructions.appendChild(li);
+        });
         fullInstructions.style.display = "block";
         viewButton.textContent = "Hide Recipe"; // Change button text
       } else {

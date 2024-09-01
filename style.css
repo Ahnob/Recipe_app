@@ -5,10 +5,10 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
+body {
+  background-color: #f4f4f4;
 }
+
 header {
   background-color: rgb(5, 93, 208);
   color: #fff;
@@ -17,42 +17,57 @@ header {
   margin-bottom: 20px;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+/* Recipe Card Styles */
 .each-container {
-  margin: 10px 20px;
+  background-color: #fff;
+  margin: 10px;
   box-shadow: 0 2px 5px grey;
   border-radius: 10px;
+  flex: 1 1 calc(33.33% - 40px); /* Flex-grow, flex-shrink, and flex-basis */
+  display: flex;
   flex-direction: column;
+  max-width: 300px; /* Ensures cards are never too wide */
 }
 
 .img {
-  max-width: 200px;
   width: 100%;
-  margin-left: 10px;
-  margin-top: 10px;
+  height: auto;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .text1 {
-  margin: auto 10px;
-  white-space: nowrap; /* Prevent text from wrapping */
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 10px;
 }
 
 .text2 {
-  margin: auto 12px;
+  font-size: 1rem;
+  margin: 10px;
+  color: #555;
 }
+
 button {
-  margin: 20px 5px;
-  padding: 10px 25px;
+  margin: 10px;
+  padding: 10px;
   background-color: rgb(5, 93, 208);
   color: #fff;
   border: none;
-  white-space: nowrap; /* Prevent text from wrapping */
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: 300;
+  border-radius: 5px;
+  font-size: 1rem;
+  text-align: center;
+  cursor: pointer;
 }
 
 button:hover {
-  cursor: pointer;
   background: rgb(142, 171, 224);
   color: black;
 }
@@ -60,28 +75,49 @@ button:hover {
 li {
   list-style: none;
 }
-.view-btn {
-  margin: 20px 0;
-  padding: 3px 5px;
+.full-instructions {
+  display: none; /* Hide by default */
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.5;
+  margin-top: 10px;
 }
 
+/* Responsive Styles */
 @media screen and (max-width: 768px) {
   .each-container {
-    flex-direction: column;
+    flex: 1 1 calc(50% - 20px); /* Adjust cards to take up half the width */
+    margin: 10px;
   }
 
-  .img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 10px;
+  .text1 {
+    font-size: 1.15rem;
   }
 
-  .text1,
   .text2 {
-    margin: 10px 10px;
+    font-size: 0.95rem;
   }
 
   button {
+    font-size: 0.95rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .each-container {
+    flex: 1 1 100%; /* Adjust cards to take up full width */
+  }
+
+  .text1 {
+    font-size: 1rem;
+  }
+
+  .text2 {
+    font-size: 0.9rem;
+  }
+
+  button {
+    font-size: 0.9rem;
     width: 100%;
   }
 }
