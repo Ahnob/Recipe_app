@@ -1,6 +1,11 @@
 const API_key = "5037eeaedf4b40b686bac31b98c5d9f8";
 const recipeList = document.getElementById("recipe-list");
 
+// Function to remove HTML tags from a string
+function stripHTMLTags(str) {
+  return str.replace(/<\/?[^>]+(>|$)/g, "");
+}
+
 function displayRecipes(recipes) {
   recipeList.innerHTML = "";
   recipes.forEach((recipe) => {
@@ -30,7 +35,7 @@ function displayRecipes(recipes) {
     recipeInstructions.classList.add("text2");
     const maxLength = 100; // Set a maximum length for the displayed instructions
     const truncatedInstructions =
-      recipe.instructions.substring(0, maxLength) + "...";
+      stripHTMLTags(recipe.instructions).substring(0, maxLength) + "...";
 
     recipeInstructions.innerHTML = `Instructions: ${truncatedInstructions} `;
 
@@ -46,7 +51,9 @@ function displayRecipes(recipes) {
     readLessButton.style.display = "none"; // Initially hide the "Read Less" button
 
     readMoreButton.addEventListener("click", () => {
-      recipeInstructions.innerHTML = `Instructions: ${recipe.instructions} `;
+      recipeInstructions.innerHTML = `Instructions: ${stripHTMLTags(
+        recipe.instructions
+      )} `;
       readMoreButton.style.display = "none"; // Hide "Read More" button
       readLessButton.style.display = "inline"; // Show "Read Less" button
     });
@@ -73,7 +80,7 @@ function displayRecipes(recipes) {
     viewButton.addEventListener("click", () => {
       if (fullInstructions.style.display === "none") {
         // Split the instructions into steps and add as list items
-        const steps = recipe.instructions
+        const steps = stripHTMLTags(recipe.instructions)
           .split(/[.\n]/)
           .filter((step) => step.trim() !== "");
         fullInstructions.innerHTML = ""; // Clear previous content

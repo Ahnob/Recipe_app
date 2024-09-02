@@ -83,6 +83,11 @@ li {
   margin-top: 10px;
 }
 
+.view-button {
+  margin-left: 20px; /* Adjust the value as needed */
+  margin-right: 20px; /* Adjust the value as needed */
+  padding: 10px 25px;
+}
 /* Responsive Styles */
 @media screen and (max-width: 768px) {
   .each-container {
