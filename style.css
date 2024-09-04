@@ -71,6 +71,22 @@ button:hover {
   background: rgb(142, 171, 224);
   color: black;
 }
+.view-button {
+  margin: 10px 20px; /* Adds top-bottom margin of 10px and left-right margin of 20px */
+  padding: 10px 25px; /* Adjust padding if necessary */
+  background-color: rgb(5, 93, 208);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.view-button:hover {
+  cursor: pointer;
+  background: rgb(142, 171, 224);
+  color: black;
+}
 
 li {
   list-style: none;
