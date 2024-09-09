@@ -27,13 +27,14 @@ header {
 /* Recipe Card Styles */
 .each-container {
   background-color: #fff;
+  width: 100%;
   margin: 10px;
   box-shadow: 0 2px 5px grey;
   border-radius: 10px;
-  flex: 1 1 calc(33.33% - 40px); /* Flex-grow, flex-shrink, and flex-basis */
+  flex: 1 1 calc(33.33% - 40px);
   display: flex;
   flex-direction: column;
-  max-width: 300px; /* Ensures cards are never too wide */
+  max-width: 400px;
 }
 
 .img {
@@ -72,8 +73,8 @@ button:hover {
   color: black;
 }
 .view-button {
-  margin: 10px 20px; /* Adds top-bottom margin of 10px and left-right margin of 20px */
-  padding: 10px 25px; /* Adjust padding if necessary */
+  margin: 10px 20px;
+  padding: 10px 25px;
   background-color: rgb(5, 93, 208);
   color: #fff;
   border: none;
@@ -91,12 +92,13 @@ button:hover {
 li {
   list-style: none;
 }
+
 .full-instructions {
   display: none; /* Hide by default */
   font-size: 1rem;
   color: #333;
   line-height: 1.5;
-  margin-top: 10px;
+  margin: 10px;
 }
 
 .view-button {
